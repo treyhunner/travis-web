@@ -228,6 +228,13 @@ Travis.reopen
         @popup('code-climate')
         event.stopPropagation() if event?
 
+      removeLogPopup: ->
+        debugger
+        if @get('canRemoveLog')
+          @set('active', true)
+          @popup(event)
+          event.stopPropagation()
+
     hasPermission: (->
       if permissions = @get('currentUser.permissions')
         permissions.contains parseInt(@get('repo.id'))
@@ -259,8 +266,11 @@ Travis.reopen
     ).property('jobIdForLog')
 
     jobIdForLog: (->
-      @get('job.id') ||
-        (@get('build.jobs.length') == 1 && @get('build.jobs').objectAt(0).get?('id'))
+      job = @get('job.id')
+      unless job
+        if @get('build.jobs.length') == 1
+          job = @get('build.jobs').objectAt?(0).get?('id')
+      job
     ).property('job.id', 'build.jobs.firstObject.id', 'build.jobs.length')
 
     job: (->
@@ -279,12 +289,13 @@ Travis.reopen
     ).property('jobIdForLog', 'job.log.token', 'build.jobs.firstObject.log.token')
 
     canRemoveLog: (->
+      debugger
       @get('displayRemoveLog') && @get('hasPermission')
     ).property('displayRemoveLog', 'hasPermission')
 
     displayRemoveLog: (->
-      (@get('isJobTab') || (@get('isBuildTab') && @get('build.jobs.length') == 1)) &&
-        @get('build.jobs').objectAt(0).get?('canRemoveLog')
+      (@get('isJobTab') || (@get('isBuildTab') && @get('build.jobs.length') == 1) &&
+        @get('build.jobs').objectAt?(0).get?('canRemoveLog'))
     ).property('isJobTab', 'isBuildTab', 'build.jobs.length', 'job.canRemoveLog')
 
     canCancelBuild: (->
