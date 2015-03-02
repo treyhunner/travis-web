@@ -60,11 +60,23 @@
       </li>
     {{/if}}
 
-    {{#unless config.pro}}
+{{!--     {{#unless config.pro}}
       <li class="traviscicom">
         <a href="http://travis-ci.com">Travis CI for Private Repositories</a>
       </li>
-    {{/unless}}
+    {{/unless}} --}}
+
+    <li class="menu menu--search">
+      <div class="search handle">
+        {{filter-input placeholder="Search all repositories" class="search-field"
+            action="updateFilter" on="key-up"}}
+      </div>
+      <ul class="search-suggestions">
+        <li><a href="#">travis-api</a></li>
+        <li><a href="#">travis-cookbooks</a></li>
+        <li><a href="#">travis-web</a></li>
+      </ul>
+    </li>
 
     <li {{bind-attr class="view.classProfile"}}>
       <p class="handle">
