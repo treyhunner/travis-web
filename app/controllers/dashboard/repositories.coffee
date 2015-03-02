@@ -53,6 +53,28 @@ Controller = Ember.Controller.extend
     orgs
   ).property()
 
+  inactiveRepos: (->
+    inactiveRepos = Ember.ArrayProxy.create(
+      content: []
+      isLoading: true
+    )
+
+    apiEndpoint = config.apiEndpoint
+    $.ajax(apiEndpoint + '/v3/repos?repository.active=false', {
+      headers: {
+        Authorization: 'token ' + @auth.token()
+      }
+    }).then (response) ->
+      console.log(response)
+      array = response.repositories.map( (repo) ->
+        Ember.Object.create(repo)
+      )
+      inactiveRepos.set('content', array)
+      inactiveRepos.set('isLoading', false)
+
+    inactiveRepos
+  ).property()
+
   actions:
     updateFilter: (value) ->
       @set('_lastFilterValue', value)
