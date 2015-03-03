@@ -61,6 +61,7 @@ $db-text-color: #ACAAAA
     bottom: 0
     margin: auto
 
+  @include colorDbelements($cancel-color)
   &.started,
   &.created
     @include colorDbelements($start-color)
@@ -72,8 +73,6 @@ $db-text-color: #ACAAAA
     @include colorDbelements($cancel-color)
   &.passed
     @include colorDbelements($pass-color)
-  &.inactive
-    @include colorDbelements($cancel-color)
 
 .db-repo
   padding-left: 3em

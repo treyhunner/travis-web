@@ -68,7 +68,7 @@
                 {{#link-to "build" repo.owner.login repo.name repo.last_build.id}}
                   {{repo.last_build.number}} {{repo.last_build.state}}
                 {{/link-to}}</p>
-              <p class="db-branch column medium-3 small-6"><span class="icon icon-branch"></span>master</p>
+              <p class="db-branch column medium-3 small-6"><span class="icon icon-branch"></span>{{repo.default_branch.name}}</p>
               <p class="db-commit column medium-3 small-6"><span class="icon icon-github"></span>394348a</p>
               <p class="db-timeago column medium-3 small-6"><span class="icon icon-cal"></span>{{format-time repo.last_build.finished_at}}</p>
             </div>
@@ -113,9 +113,12 @@
     <section class="dashboard-inactive">
 
         {{#each repo in filteredRepositories.inactive}}
-          <div class="db db--pass db--inactive row">
+          <div {{bind-attr class=":db :row repo.last_build.state"}}>
+            {{#if repo.private }}
+              <div class="db-lock"><span class="icon icon-lock"></span></div>
+            {{/if}}
             <div class="db-status">
-              <span class="icon icon-status icon-pass"></span>
+              <span {{bind-attr class=":icon :icon-status repo.last_build.state"}}></span>
             </div>
             <div class="db-repo column medium-3 small-12">
               <h3>{{repo.owner.login}}</h3>
@@ -130,7 +133,7 @@
               {{else}}
                 {{#if repo.last_build}}
                   <p class="db-job column medium-2 small-4"><span class="icon icon-hash"></span>{{repo.last_build.number}}</p>
-                  <p class="db-commit column medium-2 small-4"><span class="icon icon-github"></span>{{repo.last_build.id}}</p>
+                  <p class="db-commit column medium-2 small-4"><span class="icon icon-github"></span>23dsf2</p>
                   <p class="db-timeago column medium-2 small-4"><span class="icon icon-cal"></span>{{format-time repo.last_build.finished_at}}</p>
                   <div class="db-activation column medium-5 push-1 small-12 end">
                     <p>Not active</p>
