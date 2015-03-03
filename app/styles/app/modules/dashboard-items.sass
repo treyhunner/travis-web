@@ -1,0 +1,142 @@
+/*
+ * Dashboard Items
+ */
+
+@mixin colorDbelements($color)
+ .db-status
+   background-color: $color
+ .db-repo
+   h2, h3, a
+     color: $color
+ .db-job
+   color: $color
+   a
+     color: $color
+
+%br-4px
+ border-radius: 4px
+
+$db-gray: #C9C9C9
+$db-text-color: #ACAAAA
+
+.db
+  position: relative
+  margin-bottom: 1em
+  background: $white
+  @extend %br-4px
+
+  .db-repo,
+  .db-activation,
+  .db-controls
+    h2, h3, & > p
+      margin: 0
+      font-weight: 400
+      white-space: nowrap
+
+  .icon
+    position: absolute
+    left: 0
+    top: 0
+    bottom: 0
+    margin: auto
+
+  @include colorDbelements($cancel-color)
+  &.started,
+  &.created
+    @include colorDbelements($start-color)
+  &.failed
+    @include colorDbelements($fail-color)
+  &.errored
+    @include colorDbelements($error-color)
+  &.canceled
+    @include colorDbelements($cancel-color)
+  &.passed
+    @include colorDbelements($pass-color)
+
+.db-repo
+  padding-left: 3em
+  transform: translateY(0.4em)
+  overflow: hidden
+  margin-bottom: 1em
+  &:after
+    content: ""
+    display: block
+    position: absolute
+    top: 0
+    right: 0
+    height: 100%
+    width: 3em
+    background: linear-gradient(-90deg, $white 40%, rgba($white, 0))
+
+.db-status
+  position: absolute;
+  top: 0
+  left: 0
+  height: 100%
+  width: 2.5em
+  border-top-left-radius: 4px
+  border-bottom-left-radius: 4px
+
+  .icon
+    width: 1.1em
+    height: 1.1em
+    right: 0
+  .icon-status
+    top: -6em
+  .icon-star
+    top: -2em
+    opacity: .9
+
+.db-controls
+  line-height: 2.2
+  p,
+  button
+    display: inline-block
+  button
+    margin-left: 1em
+
+  .icon
+    width: 1.4em
+    height: 1.4em
+
+.db-job,
+.db-branch,
+.db-commit,
+.db-timeago
+  position: relative
+  padding-left: 2.2em
+  z-index: 30
+  overflow: hidden
+
+.db-lock
+  position: absolute
+  left: -2.1em;
+  top: 1.2em;
+  .icon
+    width: 1em
+    height: 1em
+
+.db-activation
+  margin: 1em 0 .5em
+  text-align: right
+  padding-right: 0
+  @media #{$medium-up}
+    margin: 0
+
+.db-burger
+  position: absolute;
+  top: 0
+  right: 0
+  height: 4em
+  width: 4em
+  cursor: pointer
+  z-index: 30
+  .icon
+    width: 2em
+    height: 2em
+    right: 0
+
+.dropdown--db
+  display: none
+
+
