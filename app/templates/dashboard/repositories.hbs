@@ -43,7 +43,7 @@
   </section>
   <section class="dashboard-active">
 
-    {{#each repo in filteredRepositories}}
+    {{#each repo in filteredRepositories.active}}
       <div {{bind-attr class=":db :row repo.last_build.state"}}>
         {{#if repo.private }}
           <div class="db-lock"><span class="icon icon-lock"></span></div>
@@ -104,11 +104,9 @@
   <hr>
   <section class="dashboard-inactive">
 
-    {{#if inactiveRepos.isLoading }}
       <span class="sync-spinner"><i></i><i></i><i></i></span>
-    {{/if}}
 
-    {{#each repo in inactiveRepos}}
+    {{#each repo in filteredRepositories.inactive}}
       <div class="db db--pass db--inactive row">
         <div class="db-status">
           <span class="icon icon-status icon-pass"></span>

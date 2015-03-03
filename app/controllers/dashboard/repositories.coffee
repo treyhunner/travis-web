@@ -8,18 +8,44 @@ Controller = Ember.Controller.extend
 
   filteredRepositories: (->
     filter = @get('filter')
-    repos = @get('model')
+    # repos = @get('model')
     org = @get('org')
 
-    if org
-      repos = repos.filter (item, index) ->
-        item.get('owner.login') == org
+    repos = Ember.ArrayProxy.create(
+      active: []
+      inactive: []
+      isLoading: true
+    )
 
-    if Ember.isBlank(filter)
-      repos
-    else
-      repos.filter (item, index) ->
-        item.slug.match(new RegExp(filter))
+    apiEndpoint = config.apiEndpoint
+    $.ajax(apiEndpoint + '/v3/repos', {
+      headers: {
+        Authorization: 'token ' + @auth.token()
+      }
+    }).then (response) ->
+      array = response.repositories.map( (repo) ->
+        Ember.Object.create(repo)
+      )
+
+      if org
+        array = array.filter (item, index) ->
+          item.get('owner.login') == org
+
+      if Ember.isBlank(filter)
+        array
+      else
+        array.filter (item, index) ->
+          item.slug.match(new RegExp(filter))
+
+      repos.set('active', array.filter (item, index) ->
+        item.active == true
+      )
+      repos.set('inactive', array.filter (item, index) ->
+        item.active == false
+      )
+      repos.set('isLoading', false)
+
+    repos
 
   ).property('filter', 'model', 'org')
 
@@ -51,28 +77,6 @@ Controller = Ember.Controller.extend
       orgs.set('isLoading', false)
 
     orgs
-  ).property()
-
-  inactiveRepos: (->
-    inactiveRepos = Ember.ArrayProxy.create(
-      content: []
-      isLoading: true
-    )
-
-    apiEndpoint = config.apiEndpoint
-    $.ajax(apiEndpoint + '/v3/repos?repository.active=false', {
-      headers: {
-        Authorization: 'token ' + @auth.token()
-      }
-    }).then (response) ->
-      console.log(response)
-      array = response.repositories.map( (repo) ->
-        Ember.Object.create(repo)
-      )
-      inactiveRepos.set('content', array)
-      inactiveRepos.set('isLoading', false)
-
-    inactiveRepos
   ).property()
 
   actions:
