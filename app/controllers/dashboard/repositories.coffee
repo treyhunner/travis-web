@@ -38,10 +38,10 @@ Controller = Ember.Controller.extend
           item.slug.match(new RegExp(filter))
 
       repos.set('active', array.filter (item, index) ->
-        item.active == true
+        item.active == true && item.last_build != null
       )
       repos.set('inactive', array.filter (item, index) ->
-        item.active == false
+        item.active == false || item.last_build == null
       )
       repos.set('isLoading', false)
 
