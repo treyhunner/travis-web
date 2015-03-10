@@ -8,46 +8,22 @@ Controller = Ember.Controller.extend
 
   filteredRepositories: (->
     filter = @get('filter')
-    # repos = @get('model')
+    model = @get('model')
     org = @get('org')
 
-    repos = Ember.ArrayProxy.create(
-      active: []
-      inactive: []
-      isLoading: true
-    )
+    if org
+      model = model.filter (item, index) ->
+        item.get('owner.login') == org
 
-    apiEndpoint = config.apiEndpoint
-    $.ajax(apiEndpoint + '/v3/repos', {
-      headers: {
-        Authorization: 'token ' + @auth.token()
-      }
-    }).then (response) ->
-      array = response.repositories.map( (repo) ->
-        Ember.Object.create(repo)
-      )
+    if !Ember.isBlank(filter)
+      model =model.filter (item, index) ->
+        item.slug.match(new RegExp(filter))
 
-      if org
-        array = array.filter (item, index) ->
-          item.get('owner.login') == org
-
-      if Ember.isBlank(filter)
-        array
-      else
-        array.filter (item, index) ->
-          item.slug.match(new RegExp(filter))
-
-      repos.set('active', array.filter (item, index) ->
-        item.active == true && item.last_build != null
-      )
-      repos.set('inactive', array.filter (item, index) ->
-        item.active == false || item.last_build == null
-      )
-      repos.set('isLoading', false)
-
-    repos
-
+    model
   ).property('filter', 'model', 'org')
+
+  activeRepositories: Ember.computed.filterBy('filteredRepositories', 'active', true)
+  inactiveRepositories: Ember.computed.filterBy('filteredRepositories', 'active', false)
 
   updateFilter: () ->
     value = @get('_lastFilterValue')

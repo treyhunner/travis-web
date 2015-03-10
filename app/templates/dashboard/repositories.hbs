@@ -50,7 +50,7 @@
     </section>
     <section class="dashboard-active">
 
-        {{#each repo in filteredRepositories.active}}
+        {{#each repo in activeRepositories}}
           <div {{bind-attr class=":db :row repo.last_build.state"}}>
             {{#if repo.private }}
               <div class="db-lock"><span class="icon icon-lock"></span></div>
@@ -134,7 +134,7 @@
         </div>
       </div>
 
-        {{#each repo in filteredRepositories.inactive}}
+        {{#each repo in inactiveRepositories}}
           <div {{bind-attr class=":db :row repo.last_build.state"}}>
             {{#if repo.private }}
               <div class="db-lock"><span class="icon icon-lock"></span></div>

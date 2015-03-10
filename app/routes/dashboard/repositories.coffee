@@ -7,7 +7,7 @@ Route = TravisRoute.extend
     filter: { replace: true }
   model: ->
     apiEndpoint = config.apiEndpoint
-    $.ajax(apiEndpoint + '/v3/repos?repository.active=true', {
+    $.ajax(apiEndpoint + '/v3/repos', {
       headers: {
         Authorization: 'token ' + @auth.token()
       }
