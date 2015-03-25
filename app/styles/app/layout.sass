@@ -1,14 +1,4 @@
 
-.centered
-  .row
-    max-width: 1024px
-  .main
-    margin: auto
-    max-width: 1024px
-    padding-left: 0 !important
-    padding-right: 0 !important
-    padding-top: 30px !important
-
 
 .main,
 .profile-view
@@ -103,56 +93,36 @@
   a
     margin-left: 5px
 
-// @media screen and (max-width: 1400px)
-//   #left .duration_label
-//     display: inline-block
-//     width: 11px
-//     height: 11px
-//     margin-right: 1px
-//     text-indent: 10px
-//     overflow: hidden
-//     background: inline-image('ui/clock.svg') no-repeat 0px 0px
-//     background-size: contain
-
-// @media screen and (max-width: 1400px)
-//   #left .finished_at_label
-//     display: none
-
-// @media screen and (max-width: 1400px)
-//   table#builds .committer
-//     display: none
-
-// @media handheld, only screen and (max-device-width: 980px)
-//   #left
-//     display: none
-//   #main
-//     min-width: 99%
-//     max-width: 99%
-//     padding: 0px
-
-//     .tabs
-//       margin-top: 5px
-
-//     p.description
-//       margin: 5px 0px
-
-//     #repo
-//       padding: 15px 10px
-//       width: 95%
-
-//   #top
-//     width: 100%
-//     min-width: 960px
-//   #tools
-//     display: none
-
-// a
-//   text-decoration : none
-
-// .application,
-// .dashboard
-//   height: 100%
 
 
-// .no-padding
-//   padding : 0
+$max-width: 1024px
+
+.centered
+  .row
+    max-width: $max-width
+  .main
+    margin: auto
+    max-width: $max-width
+    padding-left: 0 !important
+    padding-right: 0 !important
+    padding-top: 30px !important
+
+// prep no-sidebars
+
+.no-sidebars
+  .topbar
+    max-width: $max-width
+    margin: auto
+  #left
+    display: none
+  .wrapper-main
+    max-width: $max-width !important
+    float: none
+    margin: auto
+    .main
+      width: 100%
+      margin: auto
+      padding-left: 0 !important
+      padding-right: 0 !important
+      padding-top: 30px !important
+
