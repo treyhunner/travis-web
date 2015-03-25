@@ -15,7 +15,8 @@ $top-height: 55px
     background   : inline-image('svg/travis-ci-logo.svg') no-repeat  0 50%
     &:hover
       background   : $cream-light inline-image('svg/travis-ci-logo-hover.svg') no-repeat 50%
-  .centered &
+  .centered &,
+  .no-sidebars &
     margin-left: 0
 
 .burger
@@ -35,9 +36,6 @@ $top-height: 55px
     @include clearfix
     &:hover
       cursor: pointer
-
-.top
-  background-color: #eff0ec
 
 .topbar
   font-size: $font-size-m
