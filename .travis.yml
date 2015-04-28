@@ -33,9 +33,9 @@ before_deploy:
   - rm -fr dist/assets/*.js dist/images/emoji dist/index.html dist/images/sponsors
   - cp dist/maintenance.html dist/index.html
 
+before_deploy: pushd app
+after_deploy: popd
 deploy:
-  before_deploy: pushd app
-  after_deploy: popd
   provider: heroku
   api_key: $HEROKU_API_KEY
   app: travis-web-staging
