@@ -43,4 +43,4 @@ deploy:
   run:
     - echo $?
     - "This should not run"
-  strategy: git
+  strategy: api
