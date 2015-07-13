@@ -36,7 +36,7 @@ install:
   - bower install
 
 script:
-  - ember try $EMBER_VERSION
+  - ember try $EMBER_VERSION test --launch `test $TRAVIS_PULL_REQUEST = "false" && echo "SL_chrome,SL_firefox" || echo "PhantomJS"`
 
 notifications:
   campfire:
