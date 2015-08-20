@@ -1,8 +1,7 @@
 `import Ember from 'ember'`
 
 Controller = Ember.Controller.extend
-  needs: ['currentUser']
-  userBinding: 'controllers.currentUser.model'
+  userBinding: 'auth.currentUser'
 
   userName: (->
     @get('user.name') || @get('user.login')
