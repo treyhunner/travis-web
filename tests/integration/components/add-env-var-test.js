@@ -36,6 +36,9 @@ test('it adds an env var on submit', function(assert) {
   assert.equal(envVar.get('value'), 'bar', 'value should be set for the env var');
   assert.equal(envVar.get('repo.slug'), 'travis-ci/travis-web', 'repo should be set for the env var');
   assert.ok(!envVar.get('public'), 'env var should be private');
+
+  stop();
+  setTimeout(function() { start(); }, 100);
 });
 
 test('it shows an error if no name is present', function(assert) {
