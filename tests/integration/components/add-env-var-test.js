@@ -89,4 +89,7 @@ test('it adds a public env var on submit', function(assert) {
   assert.equal(envVar.get('value'), 'bar', 'value should be set for the env var');
   assert.equal(envVar.get('repo.slug'), 'travis-ci/travis-web', 'repo should be set for the env var');
   assert.ok(envVar.get('public'), 'env var should be public');
+
+  var done = assert.async();
+  setTimeout(function() { done(); }, 500);
 });
