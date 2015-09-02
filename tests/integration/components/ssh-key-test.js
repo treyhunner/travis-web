@@ -61,7 +61,7 @@ test('it deletes a custom key if permissions are right', function(assert) {
 
   // we don't deal with saving records for now, so at least wait till it's done
   stop();
-  setTimeout(function() { start(); }, 100);
+  setTimeout(function() { start(); }, 500);
 });
 
 test('it does not delete the custom key if permissions are insufficient', function(assert) {
