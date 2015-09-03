@@ -19,7 +19,7 @@ matrix:
 addons:
   sauce_connect: true
 
-sudo: false
+sudo: required
 
 cache:
   branch: md5deep
