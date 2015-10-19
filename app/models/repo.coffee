@@ -13,7 +13,9 @@ Repo = Model.extend
   private:             DS.attr('boolean')
   githubLanguage:      DS.attr()
   active:              DS.attr()
-  lastBuild: DS.belongsTo('build')
+
+  #lastBuild:     DS.belongsTo('build')
+  defaultBranch: DS.belongsTo('branch')
 
   withLastBuild: ->
     @filter( (repo) -> repo.get('lastBuild') )
