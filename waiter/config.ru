@@ -42,6 +42,9 @@ if ENV['TRAVIS_PRO']
 
   ENV['CODE_CLIMATE_URL'] ||= "https://codeclimate.com/partners/travisci"
   ENV['CODE_CLIMATE'] = 'true' unless ENV.has_key?('CODE_CLIMATE')
+
+  ENV['CODECOV_URL'] ||= "https://codecov.io/travisci"
+  ENV['CODECOV'] = 'true' unless ENV.has_key?('CODECOV')
 end
 
 if ENV['TRAVIS_ENTERPRISE']
