@@ -15,37 +15,41 @@
     Quickly upload report to Codecov:
   </p>
 
-  <div class="language" id="codecov-ruby">
+  <div>
     <ol>
-      <li>
-        <p>Add the `codecov` gem to your Gemfile:</p>
-<pre>gem "codecov", group: :test, require: nil
-</pre>
-      </li>
-      <li>
-        <p>Load the reporter in your `test_helper` or `spec_helper`, putting it at the very top:</p>
-<pre>require "codecov"
-require "simplecov"
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
-</pre>
-        <p>
-          Learn more at <a href="https://github.com/codecov/example-ruby">https://github.com/codecov/example-ruby</a>
-        </p>
-      </li>
-    </ol>
-  </div>
 
-  <div class="language" id="codecov-bash">
-    <ol>
-      <li>
-        <p>Add Codecov to your .travis.yml:</p>
-<pre>after_success:
-  bash &lt;(curl -s https://codecov.io/bash)
-</pre>
-        <p>
-          Learn more at <a id="codecov-bash-link" href="https://github.com/codecov">https://github.com/codecov</a>
-        </p>
-      </li>
+      {{#if bashSupportedLanguage}}
+
+        <li>
+          <p>Add Codecov to your .travis.yml:</p>
+    <pre>after_success:
+    bash &lt;(curl -s https://codecov.io/bash)
+    </pre>
+          <p>
+            Learn more at <a href="{{url}}">{{url}}</a>
+          </p>
+        </li>
+
+      {{else if (eq language "Ruby")}}
+
+        <li>
+          <p>Add the `codecov` gem to your Gemfile:</p>
+  <pre>gem "codecov", group: :test, require: nil
+  </pre>
+        </li>
+        <li>
+          <p>Load the reporter in your `test_helper` or `spec_helper`, putting it at the very top:</p>
+  <pre>require "codecov"
+  require "simplecov"
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+  </pre>
+          <p>
+            Learn more at <a href="{{url}}">{{url}}</a>
+          </p>
+        </li>
+
+      {{/if}}
+
     </ol>
   </div>
 
