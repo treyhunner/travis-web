@@ -6,7 +6,7 @@
   </p>
   <p>
     Integrating <a href="https://codecov.io">Codecov's test coverage</a> reporting with your test
-    suite on Travis CI allows to track changes in coverage over time. If you haven't tried it out already, <a
+    suite on Travis CI allows you to track changes in coverage over time. If you haven't tried it out already, <a
     href={{config.codecovUrl}} target="_blank">sign
     up today</a> to improve your code's quality. Forever free for Open Source project. Private starting at $3/month.
   </p>
@@ -19,18 +19,18 @@
     <ol>
       <li>
         <p>Add the `codecov` gem to your Gemfile:</p>
-
 <pre>gem "codecov", group: :test, require: nil
 </pre>
       </li>
       <li>
         <p>Load the reporter in your `test_helper` or `spec_helper`, putting it at the very top:</p>
-
 <pre>require "codecov"
 require "simplecov"
 SimpleCov.formatter = SimpleCov::Formatter::Codecov
 </pre>
-        <p>Learn more at https://github.com/codecov/example-ruby</p>
+        <p>
+          Learn more at <a href="https://github.com/codecov/example-ruby">https://github.com/codecov/example-ruby</a>
+        </p>
       </li>
     </ol>
   </div>
@@ -39,15 +39,14 @@ SimpleCov.formatter = SimpleCov::Formatter::Codecov
     <ol>
       <li>
         <p>Add Codecov to your .travis.yml:</p>
-
-<pre>
-after_success:
+<pre>after_success:
   bash &lt;(curl -s https://codecov.io/bash)
 </pre>
-        <p>Learn more at <a id="codecov-bash-link" href="https://github.com/codecov">https://github.com/codecov</a></p>
+        <p>
+          Learn more at <a id="codecov-bash-link" href="https://github.com/codecov">https://github.com/codecov</a>
+        </p>
       </li>
     </ol>
   </div>
-
 
 </div>

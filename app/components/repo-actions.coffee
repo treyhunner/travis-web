@@ -6,7 +6,7 @@ RepoActionsComponent = Ember.Component.extend(
   ).property('repo.githubLanguage')
 
   displayCodecov: (->
-    @get('repo.githubLanguage') in ['Ruby', 'Pyhton', 'Go', 'Java', 'PHP', 'Node.js', 'Scala', 'D', 'C']
+    @get('repo.githubLanguage') in ['Ruby', 'Python', 'Go', 'Java', 'PHP', 'Node.js', 'Scala', 'D', 'C']
   ).property('repo.githubLanguage')
 
   actions:
@@ -18,13 +18,14 @@ RepoActionsComponent = Ember.Component.extend(
     codecovPopup: ->
       $('.popup').removeClass('display')
       language = @get('repo.githubLanguage')
-      $('#codecov').addClass('display').find('.languages').hide()
-      if languages in ['Pyhton', 'Go', 'Java', 'PHP', 'Node.js', 'Scala', 'D', 'C']
+      $codecov = $('#codecov')
+      $codecov.addClass('display').find('.languages').hide()
+      if languages in ['Python', 'Go', 'Java', 'PHP', 'Node.js', 'Scala', 'D', 'C']
         link = 'https://github.com/codecov/example-' + language.toLowerCase()
-        $('#codecov').find('#codecov-bash').show()
+        $codecov.find('#codecov-bash').show()
         $('#codecov-bash-link').attr('href', link).text(link)
       else
-        $('#codecov').find('#codecov-'+language.toLowerCase()).show()
+        $codecov.find('#codecov-'+language.toLowerCase()).show()
       return false
 )
 
