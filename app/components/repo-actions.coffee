@@ -19,7 +19,7 @@ RepoActionsComponent = Ember.Component.extend(
       $('.popup').removeClass('display')
       language = @get('repo.githubLanguage')
       $codecov = $('#codecov')
-      $codecov.addClass('display').find('.languages').hide()
+      $codecov.addClass('display').find('.language').hide()
       if language in ['Python', 'Go', 'Java', 'PHP', 'Node.js', 'Scala', 'D', 'C']
         link = 'https://github.com/codecov/example-' + language.toLowerCase()
         $codecov.find('#codecov-bash').show()
