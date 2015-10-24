@@ -74,6 +74,8 @@ run Travis::Web::App.build(
   enterprise: ENV['TRAVIS_ENTERPRISE'],
   code_climate: ENV['CODE_CLIMATE'],
   code_climate_url: ENV['CODE_CLIMATE_URL'],
+  codecov: ENV['CODECOV'],
+  codecov_url: ENV['CODECOV_URL'],
   assets_host: ENV['ASSETS_HOST'],
   ajax_polling: ENV['AJAX_POLLING'],
   github_orgs_oauth_access_settings_url: ENV['GITHUB_ORGS_OAUTH_ACCESS_SETTINGS_URL']
